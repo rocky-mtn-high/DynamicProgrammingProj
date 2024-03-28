@@ -26,12 +26,13 @@ def run_final():
 
 
 
-
+def main():
+    run_final()
 
 """
 MAIN
 """
 if __name__ == '__main__':
-    run_final()
+    main()
     # run_tests()
 
