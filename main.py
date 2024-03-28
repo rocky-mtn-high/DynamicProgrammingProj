@@ -21,7 +21,7 @@ def run_tests():
 
 def run_final():
     logs = file_import()
-    print(max_wood(logs, 0, ln(logs) - 1))
+    print(max_wood(logs, 0, len(logs) - 1))
 
 
 
