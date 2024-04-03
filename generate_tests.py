@@ -13,6 +13,6 @@ def save_array_to_file(array, filename):
 def gen_tests():
     for i in range(50):  # Generate 10 arrays
         array = generate_random_array()
-        filename = f"array_{i + 1}.txt"  # Naming the files array_1.txt, array_2.txt, ...
+        filename = f"./arrays/array_{i + 1}.txt"  # Naming the files array_1.txt, array_2.txt, ...
         save_array_to_file(array, filename)
         print(f"Array {i + 1} saved to {filename}")

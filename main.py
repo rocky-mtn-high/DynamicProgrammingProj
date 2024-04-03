@@ -1,5 +1,5 @@
 from file_handling import file_import, test_import
-from algo import max_wood
+from algo import max_wood, max_wood_bu
 from generate_tests import gen_tests
 import time
 
@@ -15,19 +15,30 @@ def run_tests():
         elapsed_time = end_time - start_time
         print("Test", str(i), "with length", len(logs), "Result:", result, "Time:", elapsed_time)
 
-
+def run_tests_bu():
+    gen_tests()
+    for i in range(1, 10):
+        logs = test_import("array_" + str(i) + ".txt")
+        # start_time = time.time()
+        # print("Test", str(i), max_wood(logs, 0, len(logs) - 1))
+        result = max_wood_bu(logs)
+        print(result)
+        # end_time = time.time()
+        # elapsed_time = end_time - start_time
+        # print("Test", str(i), "with length", len(logs), "Result:", result, "Time:", elapsed_time)
 
     # print(max_wood(logs, 0, len(logs) - 1))
 
 def run_final():
     logs = file_import()
-    print(max_wood(logs, 0, len(logs) - 1))
+    # print(max_wood(logs, 0, len(logs) - 1))
 
 
 
 
 def main():
-    run_final()
+    # run_final()
+    run_tests_bu()
 
 """
 MAIN
