@@ -27,7 +27,7 @@ def max_wood_bu(segments):
 
     ##now bottom up recurse
     ##do i + 1 = j, then i + 2 = j, ... along diagonals
-    for i in range(0, n):
+    # for i in range(0, n):
 
     return(table[0][l-1])
     ##sum of segments from i to j - min of recursive calls
