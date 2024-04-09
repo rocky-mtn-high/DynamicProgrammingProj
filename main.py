@@ -58,6 +58,7 @@ def run_both():
 
 def run_final():
     logs = file_import()
+    print(max_wood_bu(logs))
     # print(max_wood(logs, 0, len(logs) - 1))
 
 
@@ -67,7 +68,8 @@ def main():
     sys.setrecursionlimit(4000)
     # run_final()
     # run_both()
-    run_tests_bu()
+    # run_tests_bu()
+    run_final()
 
 """
 MAIN
