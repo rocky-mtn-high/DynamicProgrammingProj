@@ -1,7 +1,7 @@
 import random
 
 def generate_random_array():
-    length = random.randint(1, 20)
+    length = random.randint(1, 2000)
     array = [random.randint(1, 1000) for _ in range(length)]
     return array
 

@@ -13,21 +13,21 @@ def max_wood(segments, i, j):
         return segments[i]
     total_left = sum(segments[i:j+1])
     return total_left - min(max_wood(segments, i + 1, j),max_wood(segments, i, j - 1) )
-
+##O(n^2)
 def max_wood_bu(segments):
-    l = len(segments)
-    ##max val is 1000, so initalize at 1001
-    table = [[1001 for j in range(l)] for i in range(l)]
+    n = len(segments)
+    dp = [[0] * n for _ in range(n)]
 
-    ##base cases
-    for i in range(l):
-        for j in range(l):
-            if i == j:
-                table[i][j] = segments[i-1]
+    for i in range(n):
+        dp[i][i] = segments[i]
 
-    ##now bottom up recurse
-    ##do i + 1 = j, then i + 2 = j, ... along diagonals
-    # for i in range(0, n):
+    for length in range(2, n + 1):
+        for i in range(n - length + 1):
+            j = i + length - 1
+            total_left = sum(segments[i:j+1])
+            dp[i][j] = total_left - min(dp[i + 1][j], dp[i][j - 1])
 
-    return(table[0][l-1])
+    return dp[0][n - 1]
     ##sum of segments from i to j - min of recursive calls
+
+
