@@ -30,4 +30,52 @@ def max_wood_bu(segments):
     return dp[0][n - 1]
     ##sum of segments from i to j - min of recursive calls
 
+def max_wood_traceback(segments):
+    n = len(segments)
+    dp = [[0] * n for _ in range(n)]
+    parent = [[None] * n for _ in range(n)]
+
+    ##fill in segments
+    for i in range(n):
+        dp[i][i] = segments[i]
+
+    ##compute table
+    for length in range(2, n + 1):
+        for i in range(n - length + 1):
+            j = i + length - 1
+            total_left = sum(segments[i:j + 1])
+            dp[i][j] = total_left - min(dp[i + 1][j], dp[i][j - 1])
+
+            ##updating parent cells
+            left = dp[i + 1][j]
+            right = dp[i][j - 1]
+
+            if left < right or  left == right: ##tiebreakjer
+                dp[i][j] = total_left - left
+                parent[i][j] = 'L'
+            else:
+                dp[i][j] = total_left - right
+                parent[i][j] = 'R'
+
+    ##Do traceback based on indices across table
+    order = []
+    i, j = 0, n - 1
+    while i <= j:
+        if i == j:
+            order.append(i)
+            break
+        elif parent[i][j] == 'L':
+            order.append(i)
+            i += 1
+        else: ##this is if parent = R
+            order.append(j)
+            j -= 1
+    order.reverse()
+
+    return dp[0][n - 1], order
+
+
+
+
+
 

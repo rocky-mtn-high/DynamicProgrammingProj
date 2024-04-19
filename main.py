@@ -1,5 +1,5 @@
 from file_handling import file_import, test_import
-from algo import max_wood, max_wood_bu
+from algo import max_wood, max_wood_bu, max_wood_traceback
 from generate_tests import gen_tests
 import time
 import sys
@@ -53,24 +53,51 @@ def run_both():
         # print("Bottom-Up recursion: ", elapsed_time_bu)
 
 
+def run_traceback():
+    gen_tests()
+    for i in range(1, 10):
+        logs = test_import("./arrays/array_" + str(i) + ".txt")
+        # start_time = time.time()
+        # print("Test", str(i), max_wood(logs, 0, len(logs) - 1))
+        result, order = max_wood_traceback(logs)
+        comparison = max_wood_bu(logs)
+        # print(result)
+        # end_time = time.time()
+        # elapsed_time = end_time - start_time
+        # print("Test", str(i), "with length", len(logs), "Result:", result, "Time:", elapsed_time)
+        # print("Traceback result:", result, ",", order)
+        # print("Standard resukt:", comparison)
+        print(result)
+        traceback = ""
+        for i in order[:-1]:
+            traceback += str(i) + " "
+        if order:
+            traceback += str(order[-1])
+        print(traceback)
 
 
 
 def run_final():
     logs = file_import()
-    print(max_wood_bu(logs))
+    # print(max_wood_bu(logs))
     # print(max_wood(logs, 0, len(logs) - 1))
-
-
+    result, order = max_wood_traceback(logs)
+    print(result)
+    traceback = ""
+    for i in order[:-1]:
+        traceback += str(i) + " "
+    if order:
+        traceback += str(order[-1])
+    print(traceback)
 
 
 def main():
     sys.setrecursionlimit(4000)
-    # run_final()
+    run_final()
     # run_both()
     # run_tests_bu()
-    run_final()
-
+    # run_final()
+    # run_traceback()
 """
 MAIN
 """
