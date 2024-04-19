@@ -75,6 +75,11 @@ def run_traceback():
             traceback += str(order[-1])
         print(traceback)
 
+    test = [5, 6, 9, 7]
+    result, order = max_wood_traceback(test)
+    print(result, order)
+
+
 
 
 def run_final():
@@ -93,10 +98,10 @@ def run_final():
 
 def main():
     sys.setrecursionlimit(4000)
-    run_final()
+    # run_final()
     # run_both()
     # run_tests_bu()
-    # run_final()
+    run_final()
     # run_traceback()
 """
 MAIN

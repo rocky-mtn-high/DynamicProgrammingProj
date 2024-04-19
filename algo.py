@@ -70,8 +70,9 @@ def max_wood_traceback(segments):
         else: ##this is if parent = R
             order.append(j)
             j -= 1
-    order.reverse()
 
+    for k in range(len(order)):
+        order[k] +=1
     return dp[0][n - 1], order
 
 
