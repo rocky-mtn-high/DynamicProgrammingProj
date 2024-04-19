@@ -97,7 +97,7 @@ def run_final():
 
 
 def main():
-    sys.setrecursionlimit(4000)
+    # sys.setrecursionlimit(4000)
     # run_final()
     # run_both()
     # run_tests_bu()

@@ -35,15 +35,19 @@ def max_wood_traceback(segments):
     dp = [[0] * n for _ in range(n)]
     parent = [[None] * n for _ in range(n)]
 
+    segment_sums = [0] * (n + 1)
+    for i in range(1, n + 1):
+        segment_sums[i] = segment_sums[i - 1] + segments[i - 1]
+
     ##fill in segments
     for i in range(n):
         dp[i][i] = segments[i]
-
+        parent[i][i] = 'S'
     ##compute table
     for length in range(2, n + 1):
         for i in range(n - length + 1):
             j = i + length - 1
-            total_left = sum(segments[i:j + 1])
+            total_left = segment_sums[j + 1] - segment_sums[i]
             dp[i][j] = total_left - min(dp[i + 1][j], dp[i][j - 1])
 
             ##updating parent cells
@@ -60,20 +64,18 @@ def max_wood_traceback(segments):
     ##Do traceback based on indices across table
     order = []
     i, j = 0, n - 1
-    while i <= j:
-        if i == j:
-            order.append(i)
-            break
-        elif parent[i][j] == 'L':
+    while i < j:
+        if parent[i][j] == 'L':
             order.append(i)
             i += 1
         else: ##this is if parent = R
             order.append(j)
             j -= 1
+    if i ==j:
+        order.append(i)
 
-    for k in range(len(order)):
-        order[k] +=1
-    return dp[0][n - 1], order
+
+    return dp[0][n - 1], [idx + 1 for idx in order]
 
 
 
